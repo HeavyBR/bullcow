@@ -50,10 +50,10 @@ FText get_guess(FText guess);
 
 	void print_info()
 	{
-		constexpr int32 WORLD_LENGHT = 5;
+		
 		
 		std::cout << "Welcome to Bulls and Cows game!" << std::endl;
-		std::cout << "Can you guess the " << WORLD_LENGHT << " letter isogram i'm thinking off?" << std::endl;
+		std::cout << "Can you guess the " << BCGame.GetHiddenWord() << " letter isogram i'm thinking off?" << std::endl;
 		
 		
 
@@ -62,14 +62,16 @@ FText get_guess(FText guess);
 
 	FText get_guess(FText otherGuess)
 	{
-		if (BCGame.GetCurrentTry() == 1)
-			std::cout << "This is your first try \n";
 
 		std::cout << "Please type your guest: " << std::endl;
 		getline(std::cin, otherGuess);
+		EWordStatus Status = BCGame.CheckGuessValidity(otherGuess);
 
-		print_guess(otherGuess);
 
+		FBullCowCount BullCowCount = BCGame.SubmitGuess(otherGuess);
+
+		std::cout << "Bulls = " << BullCowCount.Bulls;
+		std::cout << ". Cows = " << BullCowCount.Cows;
 		std::cout << std::endl;
 		return otherGuess;
 	}
@@ -83,7 +85,7 @@ FText get_guess(FText guess);
 
 	bool ask_to_play_again() 
 	{
-		std::cout << "Do you want to play again y\n ? \n";
+		std::cout << "Do you want to play again Y\N ?" << std::endl;
 		
 		FText Response = "";
 
