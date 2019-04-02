@@ -16,6 +16,7 @@ void FBullCowGame::Reset()
 
 	myCurrentTry = 1;
 	myMaxTries = MAX_TRIES;
+	isgamewon = false;
 
 }
 
@@ -29,7 +30,10 @@ int32 FBullCowGame::GetMaxTries () const
 
 bool FBullCowGame::isGameWon() const
 {
-	return false;
+
+
+
+	return isgamewon;
 }
 
 EWordStatus FBullCowGame::CheckGuessValidity(FString guess)
@@ -105,20 +109,13 @@ FBullCowCount FBullCowGame::SubmitGuess(FString SubmitedGuess)
 			// se não forem iguais
 			
 		}
-		
-
-
-
-
-
-
 
 	}
-
 	
-
-
-
+	if (BullCowCount.Bulls == HiddenWordLenght)
+		isgamewon = true;
+	else
+		isgamewon = false;
 
 	return BullCowCount;
 }
