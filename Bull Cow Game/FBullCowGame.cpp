@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "FBullCowGame.h"
+#include <map>
+#define TMap std::map
 
 FBullCowGame::FBullCowGame()
 {
@@ -35,13 +37,21 @@ bool FBullCowGame::isGameWon() const
 
 	return isgamewon;
 }
+bool FBullCowGame::isIsogram(FString guess) const
+{
+
+
+
+
+	return true;
+}
 
 EWordStatus FBullCowGame::CheckGuessValidity(FString guess)
 {
 
 
 
-	if (false) // If its not a isogram
+	if (!isIsogram(guess)) // If its not a isogram
 	{
 		return EWordStatus::NOT_ISOGRAM;
 	}
@@ -83,8 +93,8 @@ FBullCowCount FBullCowGame::SubmitGuess(FString SubmitedGuess)
 {
 	// Incrementa a tentativa
 	myCurrentTry++;
-		
-	//Cria uma variável de retorno
+
+	//Cria uma variï¿½vel de retorno
 	FBullCowCount BullCowCount;
 	int32 HiddenWordLenght = myHiddenWord.length();
 	//Loop em todas as letras do guess
@@ -95,23 +105,23 @@ FBullCowCount FBullCowGame::SubmitGuess(FString SubmitedGuess)
 		{
 			if (SubmitedGuess[j] == myHiddenWord[i])		//and //nda
 			{
-				if (i == j) 
-				{ 
-					BullCowCount.Bulls++; 
+				if (i == j)
+				{
+					BullCowCount.Bulls++;
 				}
 
-				else 
-				{ 
-					BullCowCount.Cows++; 
+				else
+				{
+					BullCowCount.Cows++;
 
 				} //incrementa cows
 			}
-			// se não forem iguais
-			
+			// se nï¿½o forem iguais
+
 		}
 
 	}
-	
+
 	if (BullCowCount.Bulls == HiddenWordLenght)
 		isgamewon = true;
 	else
